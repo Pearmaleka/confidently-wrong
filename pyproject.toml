@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cwrong"
+version = "0.1.0"
+description = "Limits of sampling-based confidence for LLM agents: theory, closed forms and simulations"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Le Nam Khanh" }]
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24", "scipy>=1.10"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4", "ruff>=0.5", "mypy>=1.10", "matplotlib>=3.7"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/cwrong"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "NPY", "SIM", "RUF"]
+ignore = ["RUF002", "RUF003"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["cwrong"]
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
